@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../assests/prime.png';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Header = () => {
@@ -18,7 +19,10 @@ const Header = () => {
     return (
         <div className='py-2 text-[#F88C00] border-b-2 border-[#F88C00]'>
             <div className='w-10/12 mx-auto flex justify-between items-center'>
-                <h1 className='text-2xl font-bold'><Link to='/'>Prime Time</Link></h1>
+                <Link to='/' className='flex items-center gap-2'>
+                    <img src={logo} alt='Branding/Logo' />
+                    <h1 className='text-2xl font-bold'>Prime Time</h1>
+                </Link>
                 <>
                     <ul className='md:flex gap-3 items-center hidden font-semibold'>
                         {
@@ -26,9 +30,10 @@ const Header = () => {
                                 <Link to={`/category/${category.id}`}>{category.name}</Link>
                             </li>)
                         }
+                        {/* If there is any image of user, we will show that and logout button otherwise we will show our logo */}
                         {
-                            user?.uid ? <><img src={user?.photoURL} alt="" className='w-10 rounded-3xl' />
-                                <button onClick={handleSignOut}>Logout</button></> : <Link to='/login'>Login</Link>
+                            user?.uid ? <> {user?.photoURL ? <img src={user?.photoURL} alt="" className='w-10 rounded-3xl' /> : <img src={logo} alt=''/>}
+                            <button onClick={handleSignOut}>Logout</button></> : <Link to='/login'>Login</Link>
                         }
                     </ul>
 
