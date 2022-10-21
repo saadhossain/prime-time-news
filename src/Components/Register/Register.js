@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
@@ -28,12 +28,14 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 verifyEmail()
-                .then(() => { })
+                    .then(() => { })
                 toast.success('Registration Success...Please Verify your Email', { autoClose: 500 })
                 form.reset()
             })
             .catch(error => console.error(error))
     }
+    //Handle accept terms and condition checkbox
+    const [isDisabled, setIsDisabled] = useState(true)
     return (
         <div className='flex justify-center my-5'>
             <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-900 dark:text-gray-100">
@@ -71,8 +73,14 @@ const Register = () => {
                             </div>
                             <input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         </div>
+                        <div className='space-y-2'>
+                            <div className="flex items-center">
+                                <input onClick={()=> setIsDisabled(!isDisabled)} type="checkbox" name="remember" id="remember" aria-label="Accept Terms and Condition" className="mr-1 rounded-sm focus:prime focus:dark:prime focus:ring-2 accent-prime" />
+                                <label for="remember" className="text-sm dark:text-gray-400">Accept Terms and Condition</label>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md dark:bg-[#F88C00] text-white">Register</button>
+                    <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md dark:bg-prime text-white" disabled={isDisabled}>Register</button>
                 </form>
             </div>
 

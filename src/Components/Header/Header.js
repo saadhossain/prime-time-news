@@ -8,7 +8,7 @@ const Header = () => {
 
     const [category, setCategory] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/news-categories')
+        fetch('https://prime-news.vercel.app/news-categories')
             .then(res => res.json())
             .then(data => setCategory(data))
     }, []);
@@ -17,7 +17,7 @@ const Header = () => {
         logOut();
     }
     return (
-        <div className='py-2 text-[#F88C00] border-b-2 border-[#F88C00]'>
+        <div className='py-2 text-prime border-b-2 border-prime'>
             <div className='w-10/12 mx-auto flex justify-between items-center'>
                 <Link to='/' className='flex items-center gap-2'>
                     <img src={logo} alt='Branding/Logo' />
@@ -32,8 +32,8 @@ const Header = () => {
                         }
                         {/* If there is any image of user, we will show that and logout button otherwise we will show our logo */}
                         {
-                            user?.uid ? <> {user?.photoURL ? <img src={user?.photoURL} alt="" className='w-10 rounded-3xl' /> : <img src={logo} alt=''/>}
-                            <button onClick={handleSignOut}>Logout</button></> : <Link to='/login'>Login</Link>
+                            user?.uid ? <> {user?.photoURL ? <img src={user?.photoURL} alt="" className='w-10 rounded-3xl' /> : <img src={logo} alt='' />}
+                                <button onClick={handleSignOut}>Logout</button></> : <Link to='/login'>Login</Link>
                         }
                     </ul>
 

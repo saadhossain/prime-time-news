@@ -8,7 +8,7 @@ const PrivateRouter = ({ children }) => {
 
     if (loading) {
         return <div className='flex items-center min-h-screen justify-center'>
-            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-[#F88C00]"></div>
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-prime"></div>
         </div>
     }
     if (!user) {
